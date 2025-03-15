@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "cypress:tests": "cypress run --spec 'cypress/tests/**/*.cy.js' --browser chrome"
+  },
+  "devDependencies": {
+    "cypress": "^14.2.0"
+  },
+  "dependencies": {
+    "cypress-mochawesome-reporter": "^3.8.2"
+  }
+}
