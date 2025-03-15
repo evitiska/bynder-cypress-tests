@@ -5,17 +5,13 @@ module.exports = defineConfig({
     specPattern: 'cypress/tests/**/*.cy.{js,jsx,ts,tsx}',
     baseUrl: 'https://wave-trial.getbynder.com/',
     reporter: 'mochawesome',
-    video: false,
     reporterOptions: {
       reportDir: 'mochawesome-report/reports',
-      overwrite: false,
-      html: false,
-      json: true,
+      html: true,
     },
+    defaultBrowser: 'chrome',
     retries: 2,
     screenshotsFolder: 'mochawesome-report/assets',
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    supportFile: 'cypress/support/e2e.js',
   },
 });

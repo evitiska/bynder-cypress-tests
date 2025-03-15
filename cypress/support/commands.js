@@ -1,25 +1,11 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// The Wave Trial page has a lot of texts that are padded with (seemingly) random amounts of whitespaces and newlines.
+// This command will trim the text of the element and compare it to the expected text, strictly.
+// Sometimes this is preferable over `contains.text` because it's more strict.
+Cypress.Commands.add('shouldHaveTextAfterTrimming', { prevSubject: 'element' }, (subject, expectedText) => {
+    cy.wrap(subject)
+      .invoke('text')
+      .should((text) => {
+        expect(text.trim()).to.equal(expectedText);
+      });
+});
+  

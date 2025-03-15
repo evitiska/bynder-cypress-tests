@@ -9,6 +9,10 @@ class LoginPage extends BasePage {
         return cy.get('#login > .login-container');
     }
 
+    loginFormTitle() {
+        return cy.get('.account-logo');
+    }
+
     email() {
         return cy.get('#inputEmail');
     }
@@ -31,6 +35,10 @@ class LoginPage extends BasePage {
 
     forgotPasswordLink() {
         return cy.get('.lost-password');
+    }
+
+    logo() {
+        return cy.get('.admin-bar-logo');
     }
 
     login(email, password) {

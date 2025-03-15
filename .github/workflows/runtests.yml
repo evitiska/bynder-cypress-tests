@@ -1,0 +1,45 @@
+name: Run E2E tests
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Docker Buildx setup
+        uses: docker/setup-buildx-action@v3
+
+      - name: Write the cypress env file
+        run: |
+          echo '${{ secrets.CYPRESS_ENV_CI }}' > cypress.env.json
+
+      - name: Build the Docker image
+        run: |
+          docker build -t bynder-cypress-test .
+
+      - name: Run tests with Docker
+        run: |
+          docker run --rm  \
+            -v ${{ github.workspace }}/mochawesome-report:/app/mochawesome-report \
+            bynder-cypress-test
+      
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-test-results
+          path: |
+            mochawesome-report
+          

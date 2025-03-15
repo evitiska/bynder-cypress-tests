@@ -1,3 +1,4 @@
 node_modules/
 mochawesome-report
 cypress.env.json
+cypress/downloads
