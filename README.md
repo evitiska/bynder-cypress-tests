@@ -81,8 +81,15 @@ Then the user is redirected to the login page
     And the login form is visible
     And a logout confirmation message is displayed
 
-Scenario: User cannot log in with invalid credentials
+Scenario: User cannot log in with an invalid email
 Given the user provides an invalid username
+    And the user provides an correct password
+When the user clicks submit button
+Then an error message is displayed on the login form
+    And the error message says: `"You have entered an incorrect username or password."`
+
+Scenario: User cannot log in with an incorrect password
+Given the user provides an valid username
     And the user provides an incorrect password
 When the user clicks submit button
 Then an error message is displayed on the login form

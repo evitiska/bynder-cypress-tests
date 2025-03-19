@@ -17,6 +17,6 @@
 import './commands'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here so the test doesn't fail
+    // returning false here so the test doesn't fail on application errors
     return false
   })
