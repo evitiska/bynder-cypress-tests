@@ -21,22 +21,29 @@ Set up the configuration values for the username and password to be used in a `c
 }
 ```
 
-## 1. Run Tests in a Docker Container
+### 1. Run Tests in a Docker Container
 * Build the Docker image, for example `docker build -t bynder-cypress-tests .`
 * Run the tests in a container `docker run bynder-cypress-tests` (add `--rm` to remove container after run)
 
-## 2. Run Tests Manually
+### 2. Run Tests Manually
 * Install dependencies `npm install`
 * Run tests script `npm run cypress-tests` (runs all Cypress tests in the `tests` folder with default browser Chrome)
 
-## 3. Run Tests using GitHub Actions
+### 3. Run Tests using GitHub Actions
 This repo is configured to run tests using GitHub Actions.
 
 * Option 1: Push a new commit to `main` 
 * Option 2: Manually trigger a workflow run:
   * Navigate to GitHub → Actions tab
   * Select the workflow and trigger it manually for a given branch
+ 
+    
+### Test Reports
+After running the tests, a detailed report is generated using Mochawesome.
 
+* The report can be found in the local directory: `mochawesome-report/reports`
+* Screenshots taken during test execution are stored in: `mochawesome-report/assets`
+* When using GitHub Actions, the test report can also be downloaded as an artifact from the workflow run.
 
 ## Gherkin Scenarios
 
